@@ -38,11 +38,12 @@ public class Antiban extends Node {
 
 	@Override
 	public void execute() {
-		int whatdo = Random.nextInt(0, 5);
+		int randomAntiban = Random.nextInt(0, 5);
 		int randomTab = Random.nextInt(0, 5);
-		antiBanTimer = new Timer(Random.nextInt(minTime, maxTime));
-		Data.status = "Running antiban.";
+		antiBanTimer = new Timer(Random.nextInt(minTime, maxTime));	
 		
+		//temporary food fix, also in combat
+		//TODO remove once hooks are fixed
 		int currentHp = Integer.parseInt(Widgets.get(748, 8).getText());
 		if (currentHp < Data.totalHp*(Data.eatAt*0.01) && Data.useFood) {
 			Item food = Inventory.getItem(Data.foodId);			
@@ -53,7 +54,7 @@ public class Antiban extends Node {
 			}
 		}
         
-        switch(whatdo) {
+        switch(randomAntiban) {
         case 0:
             int randomSkill = Random.nextInt(0, 24);
             System.out.println("Checking random skill.");

@@ -143,8 +143,8 @@ public class Paint {
           g.drawString("MondoFighter", 8, 363);
           g.setFont(font2);
           g.drawString("Run Time: " + Data.runTime.toElapsedString(), 8, 380);
-          g.drawString("Status: " + Data.status, 116, 363);
-          g.drawString("Kills: " + Data.killCounter + " (" + Methods.getPerHour(Data.killCounter) + " p/h)", 116, 380);
+          g.drawString("Status: " + Data.status, 132, 363);
+          g.drawString("Kills: " + Data.killCounter + " (" + Methods.getPerHour(Data.killCounter) + " p/h)", 132, 380);
           g.setColor(color4);
           g.fillRect(255, 348, 263, 20);          
           g.fillRect(255, 368, 263, 20);
@@ -162,6 +162,10 @@ public class Paint {
           g.fillRect(256, 369, 188, 19);
           g.setColor(color2);
           g.drawLine(256, 368, 518, 368);
+          g.setFont(font3);
+          g.drawString("v1.0", 112, 364);
+          g.setColor(color5);
+          g.drawString("v1.0", 111, 363);
           g.setFont(font4);
           g.setColor(color6);
           if (!showDef && Data.chosenSkill != 1) {

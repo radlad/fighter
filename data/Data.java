@@ -36,11 +36,7 @@ public class Data {
 	public static int fighterRadius;
 	public static int lootRadius;
 	public static int chosenSkill;
-	public static String chosenSkillString;
 	public static String skillString;
-	public static int skillColourR;
-	public static int skillColourG;
-	public static int skillColourB;
 	public static boolean lootSetting;
 	public static boolean lootRareSetting;
 	public static long startTime;

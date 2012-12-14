@@ -61,7 +61,7 @@ public class LootItems extends Node {
 			Camera.turnTo(item);
 		} else if (!Inventory.isFull()){		
 			System.out.println("Picking up " + item.getGroundItem().getName() + ".");
-			Data.status = "Picking up " + item.getGroundItem().getName() + ".";
+			Data.status = "Picking up item.";
 				if(item.click(false) && Menu.isOpen() && Menu.contains("Take")) {						
 					Menu.select("Take", item.getGroundItem().getName());				
 				}
@@ -78,7 +78,7 @@ public class LootItems extends Node {
 				Camera.turnTo(rareitem);
 			} else if (!Inventory.isFull()){
 				System.out.println("Picking up " + rareitem.getGroundItem().getName() + ".");
-				Data.status = "Picking up " + rareitem.getGroundItem().getName() + ".";
+				Data.status = "Picking up item.";
 				item.interact("Take", rareitem.getGroundItem().getName());
 				Mouse.move(currentMouseX + Random.nextInt(-20, 20), currentMouseY + Random.nextInt(-20, 20));
 				Camera.setPitch(currentPitch + Random.nextInt(-70, 70));

@@ -26,7 +26,8 @@ public class Combat extends Node {
 			for(int i : Data.selectedMonstersInt) {
 				return n != null && Data.selectedMonstersInt.contains(n.getId()) && n.getLocation().canReach() 
 						&& Calculations.distanceTo(Data.START_LOCATION.getLocation()) <= Data.fighterRadius 
-						&& n.getHpPercent() > 0 && (n.getLocation() != Players.getLocal().getLocation());
+						&& n.getHpPercent() > 0 && (n.getLocation() != Players.getLocal().getLocation()) &&
+						!n.isInCombat();
 			}
 			return false;
 		}		

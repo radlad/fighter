@@ -91,23 +91,12 @@ public class MondoFighter extends ActiveScript implements PaintListener, MouseLi
             Data.startTime = System.currentTimeMillis();
             Data.startLevel = Skills.getRealLevel(Data.chosenSkill);     
             Data.startConstLevel = Skills.getRealLevel(Skills.CONSTITUTION);  
-            Data.startConstLevel = Skills.getRealLevel(Skills.DEFENSE);  
+            Data.startDefLevel = Skills.getRealLevel(Skills.DEFENSE);  
             Data.LOG_OUT = false;
             Data.START_LOCATION = Players.getLocal().getLocation(); 
             Data.oldKills = Data.killCounter;
             System.out.println("Starting MondoFighter.");
             Data.totalHp = Integer.parseInt(Widgets.get(748, 8).getText());
-            System.out.println("Total HP: " + Data.totalHp);
-            System.out.println("Location: (toString) " + Data.START_LOCATION.toString());
-            System.out.println("Eat at: " + Data.eatAt);
-            System.out.println("HP to eat at: " + Data.totalHp*(Data.eatAt*0.01));            
-            System.out.println("Fighter Radius: " + Data.fighterRadius);
-            System.out.println("Level: " + Skills.getRealLevel(Skills.ATTACK));
-            System.out.println("Food ID: " + Data.foodId);
-            System.out.println("Arrow to equip: " + Data.arrowsToPickup);
-            System.out.println("skillColourR: " + Data.skillColourR);
-            System.out.println("skillColourG: " + Data.skillColourG);
-            System.out.println("skillColourB: " + Data.skillColourB);
     }
     
     @Override
@@ -168,12 +157,7 @@ public class MondoFighter extends ActiveScript implements PaintListener, MouseLi
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent p) {		
-		/*final Rectangle togglePaint = new Rectangle(4, 373, 56, 17);
-		final Rectangle toggleNPC = new Rectangle(62, 373, 56, 17);
-		final Rectangle toggleMouse = new Rectangle(120, 373, 66, 17);
-		final Rectangle toggleGUI = new Rectangle(188, 373, 56, 17);
-		final Rectangle pauseBot = new Rectangle(262, 373, 56, 17);*/
+	public void mouseClicked(MouseEvent p) {
 		final Rectangle togglePaint = new Rectangle(8, 334, 69, 14);
 		final Rectangle toggleNPC = new Rectangle(82, 334, 69, 14);		
 		final Rectangle toggleGUI = new Rectangle(156, 334, 69, 14);
