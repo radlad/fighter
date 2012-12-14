@@ -4,17 +4,10 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 
-import org.powerbot.game.api.methods.Calculations;
 import org.powerbot.game.api.methods.Widgets;
-import org.powerbot.game.api.methods.interactive.NPCs;
-import org.powerbot.game.api.methods.interactive.Players;
-import org.powerbot.game.api.util.Filter;
 import org.powerbot.game.api.util.Timer;
 import org.powerbot.game.api.wrappers.Tile;
-import org.powerbot.game.api.wrappers.interactive.NPC;
 import org.powerbot.game.api.wrappers.widget.WidgetChild;
-
-import combat.Combat;
 
 public class Data {
 	public static ArrayList<String> selectedMonsters = new ArrayList<String>();
@@ -52,8 +45,10 @@ public class Data {
 	public static boolean lootRareSetting;
 	public static long startTime;
 	public static int startXP;
+	public static int startConstXP;
 	public static int startLevel;
 	public static int startConstLevel;
+	public static int startDefLevel;
 	public static String status = "Waiting...";
 	public static int oldKills;
 	public static int killCounter = 0;

@@ -3,7 +3,6 @@ package tasks;
 import methods.Methods;
 
 import org.powerbot.core.script.job.state.Node;
-import org.powerbot.game.api.methods.tab.Inventory;
 import org.powerbot.game.api.methods.tab.Skills;
 
 import data.Data;

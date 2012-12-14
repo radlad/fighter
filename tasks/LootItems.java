@@ -26,6 +26,17 @@ public class LootItems extends Node {
 			return false;
 		}		
 	};	
+	
+	public static Filter<GroundItem> RareItemFilter = new Filter<GroundItem>(){
+		@Override
+		public boolean accept(GroundItem n) {
+			for(int i : Data.RARE_ITEM_LIST) {
+				return n != null && n.getLocation().canReach() && i == n.getId() &&
+						Calculations.distanceTo(Data.START_LOCATION.getLocation()) <= Data.lootRadius;				
+			}
+			return false;
+		}		
+	};	
 
 	@Override
 	public boolean activate() {		
@@ -42,7 +53,7 @@ public class LootItems extends Node {
         int currentPitch = Camera.getPitch();
         int currentAngle = Camera.getYaw();
 		GroundItem item = GroundItems.getNearest(ItemFilter);
-		GroundItem rareitem = GroundItems.getNearest(Data.RARE_ITEM_LIST);
+		GroundItem rareitem = GroundItems.getNearest(RareItemFilter);
 		
 		if (!item.isOnScreen()) {
 			System.out.println("Turning to item.");

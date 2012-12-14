@@ -16,8 +16,6 @@ import javax.imageio.ImageIO;
 
 import methods.Methods;
 
-import org.powerbot.core.script.job.Task;
-import org.powerbot.game.api.methods.Calculations;
 import org.powerbot.game.api.methods.Game;
 import org.powerbot.game.api.methods.input.Mouse;
 import org.powerbot.game.api.methods.interactive.NPCs;
@@ -35,7 +33,8 @@ import data.Data;
 public class Paint {	
 	public static boolean showPaint = true;
 	public static boolean showNPC = true;
-	public static boolean showMouse = true;	
+	public static boolean showMouse = true;
+	public static boolean showDef = false;	
     private final static RenderingHints antialiasing = new RenderingHints(
             RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
     
@@ -78,6 +77,7 @@ public class Paint {
     public static Color color_skill = new Color(0, 0, 0, 170);
    // public final static Color color_skill = new Color(Data.skillColourR, Data.skillColourG, Data.skillColourB, 170);
     public final static Color color_const = new Color(255, 43, 43, 170);
+    public final static Color color_def = new Color(89, 144, 255, 170);
     public final static Color color_mouse = new Color(0, 255, 0, 210);
     public final static Color color_mouse_opa = new Color(89, 255, 89, 120);
 
@@ -148,9 +148,15 @@ public class Paint {
           g.setColor(color4);
           g.fillRect(255, 348, 263, 20);          
           g.fillRect(255, 368, 263, 20);
-          g.setColor(color_skill);          
-          //g.fillRect(256, 349, xpBarLength, 18);
-          g.fillRect(256, 349, 131, 19);
+          if (!showDef && Data.chosenSkill != 1) {
+        	  g.setColor(color_skill);          
+              //g.fillRect(256, 349, xpBarLength, 18);
+              g.fillRect(256, 349, 131, 19);
+          } else {
+        	  g.setColor(color_def);          
+              //g.fillRect(256, 349, xpBarLength, 18);
+              g.fillRect(256, 349, 131, 19); 
+          }
           g.setColor(color_const);          
           //g.fillRect(256, 369, xpBarLengthConst, 18);
           g.fillRect(256, 369, 188, 19);
@@ -158,7 +164,12 @@ public class Paint {
           g.drawLine(256, 368, 518, 368);
           g.setFont(font4);
           g.setColor(color6);
-          g.drawString("[ " + Data.skillString + ": " + Skills.getRealLevel(Data.chosenSkill) + " (+" + (Skills.getRealLevel(Data.chosenSkill) - Data.startLevel) + ") | " + Methods.kFormat(Methods.getXpHr(Data.chosenSkill)) + " xp/h | TTL: " + Methods.getTTNL(Data.chosenSkill) + " ]", 260, 362);
+          if (!showDef && Data.chosenSkill != 1) {
+              g.drawString("[ " + Data.skillString + ": " + Skills.getRealLevel(Data.chosenSkill) + " (+" + (Skills.getRealLevel(Data.chosenSkill) - Data.startLevel) + ") | " + Methods.kFormat(Methods.getXpHr(Data.chosenSkill)) + " xp/h | TTL: " + Methods.getTTNL(Data.chosenSkill) + " ]", 260, 362);
+  
+          } else {
+              g.drawString("[ Defence: " + Skills.getRealLevel(1) + " (+" + (Skills.getRealLevel(1) - Data.startDefLevel) + ") | " + Methods.kFormat(Methods.getXpHr(1)) + " xp/h | TTL: " + Methods.getTTNL(1) + " ]", 260, 362);
+          }
           g.drawString("[ Constitution: " + Skills.getRealLevel(Skills.CONSTITUTION) + " (+" + (Skills.getRealLevel(Skills.CONSTITUTION) - Data.startConstLevel) + ") | " + Methods.kFormat(Methods.getXpHr(3)) + " xp/h | TTL: " + Methods.getTTNL(3) + " ]", 260, 382);
           g.setColor(color1);
           g.fillRect(8, 334, 69, 14);

@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import methods.Methods;
+
 import org.powerbot.core.event.events.MessageEvent;
 import org.powerbot.core.event.listeners.MessageListener;
 import org.powerbot.core.event.listeners.PaintListener;
@@ -19,14 +21,12 @@ import org.powerbot.core.script.job.state.Node;
 import org.powerbot.core.script.job.state.Tree;
 import org.powerbot.game.api.Manifest;
 import org.powerbot.game.api.methods.Game;
-import org.powerbot.game.api.methods.Settings;
 import org.powerbot.game.api.methods.Widgets;
 import org.powerbot.game.api.methods.interactive.Players;
 import org.powerbot.game.api.methods.tab.Skills;
 import org.powerbot.game.api.methods.widget.Lobby;
 import org.powerbot.game.api.methods.widget.WidgetCache;
 import org.powerbot.game.api.util.Random;
-import org.powerbot.game.api.wrappers.interactive.NPC;
 import org.powerbot.game.bot.Context;
 import org.powerbot.game.client.Client;
 
@@ -87,9 +87,11 @@ public class MondoFighter extends ActiveScript implements PaintListener, MouseLi
 			provide(new WalkBack(), new NoFoodLogOut(), new Potions(), new LootItems(), new Combat(), new Antiban()); 
 			
             Data.startXP = Skills.getExperience(Data.chosenSkill);
+            Data.startConstXP = Skills.getExperience(3);
             Data.startTime = System.currentTimeMillis();
             Data.startLevel = Skills.getRealLevel(Data.chosenSkill);     
             Data.startConstLevel = Skills.getRealLevel(Skills.CONSTITUTION);  
+            Data.startConstLevel = Skills.getRealLevel(Skills.DEFENSE);  
             Data.LOG_OUT = false;
             Data.START_LOCATION = Players.getLocal().getLocation(); 
             Data.oldKills = Data.killCounter;
@@ -112,8 +114,12 @@ public class MondoFighter extends ActiveScript implements PaintListener, MouseLi
     public void onStop() {
             System.out.println("Stopping MondoFighter.");
             System.out.println("Ran for: " + Data.runTime.toElapsedString());
-            System.out.println("Gained " + (Skills.getExperience(Data.chosenSkill) - Data.startXP) + " experience.");
+            System.out.println("Gained " + (Skills.getExperience(Data.chosenSkill) - Data.startXP) + " " + Data.skillString + " experience, at " + Methods.kFormat(Methods.getXpHr(Data.chosenSkill)) + " XP per hour.");
+            System.out.println("Gained " + (Skills.getExperience(3) - Data.startConstXP) + " Constitution experience, at " + Methods.kFormat(Methods.getXpHr(3)) + " XP per hour.");
             System.out.println("Gained " + (Skills.getRealLevel(Data.chosenSkill) - Data.startLevel) + " levels in " + Data.skillString + ".");
+            System.out.println("Gained " + (Skills.getRealLevel(3) - Data.startConstLevel) + " levels in Constitution.");
+            System.out.println("Killed " + Data.killCounter + "NPCs, at " + Methods.getPerHour(Data.killCounter) + " per hour.");
+            System.out.println("Thanks for using MondoFighter!");
     }
 
 	private Client client = Context.client();
@@ -154,9 +160,6 @@ public class MondoFighter extends ActiveScript implements PaintListener, MouseLi
 		if (Widgets.get(1218, 73).isOnScreen()) {
 			Widgets.get(1218, 73).click(true);
 		}
-		if (Settings.get(463) == 0 && Data.runEnergy >= 50) {
-			Data.runButton.click(true);
-		}
 		if (Lobby.isOpen()) {
 			stop();
 		}
@@ -175,6 +178,7 @@ public class MondoFighter extends ActiveScript implements PaintListener, MouseLi
 		final Rectangle toggleNPC = new Rectangle(82, 334, 69, 14);		
 		final Rectangle toggleGUI = new Rectangle(156, 334, 69, 14);
 		final Rectangle pauseBot = new Rectangle(230, 334, 69, 14);
+		final Rectangle toggleDef = new Rectangle(255, 348, 263, 20);
 		if(togglePaint.contains(p.getPoint())) {
 			Paint.showPaint = !Paint.showPaint;
         }		
@@ -189,6 +193,9 @@ public class MondoFighter extends ActiveScript implements PaintListener, MouseLi
 		if (pauseBot.contains(p.getPoint())) {
 			Data.paused = !Data.paused;
 			Data.status = Data.paused ? "Paused." : "Waiting...";
+		}
+		if (toggleDef.contains(p.getPoint())) {
+			Paint.showDef = !Paint.showDef;
 		}
 	}
 

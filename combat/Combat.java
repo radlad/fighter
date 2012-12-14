@@ -36,7 +36,7 @@ public class Combat extends Node {
 		@Override
 		public boolean accept(NPC n) {
 			for(int i : Data.selectedMonstersInt) {
-				return n != null && Data.selectedMonstersInt.contains(n.getId()) && n.getLocation().canReach()						
+				return n != null && n.getLocation().canReach()						
 						&& n.getHpPercent() > 0 && n.getInteracting().equals(Players.getLocal());
 			}
 			return false;
@@ -96,6 +96,9 @@ public class Combat extends Node {
 		
 		if (Inventory.getCount(true, Data.arrowsToPickup) >= 1) {
 			invAmmo.getWidgetChild().click(true);
+		}
+		if (Settings.get(463) == 0 && Data.runEnergy >= 50) {
+			Data.runButton.click(true);
 		}
 		
 		int currentHp = Integer.parseInt(Widgets.get(748, 8).getText());

@@ -6,8 +6,6 @@ import org.powerbot.game.api.methods.interactive.Players;
 import org.powerbot.game.api.methods.tab.Inventory;
 import org.powerbot.game.api.methods.tab.Skills;
 import org.powerbot.game.api.methods.widget.Lobby;
-import org.powerbot.game.bot.Context;
-
 import data.Data;
 
 public class NoFoodLogOut extends Node {

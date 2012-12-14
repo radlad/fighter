@@ -68,37 +68,22 @@ public class GUI extends JFrame {
 			if(skillChosen.equals("Attack")){
 				Data.chosenSkill = 0;
 				Data.skillString = "Attack";
-				Data.skillColourR = 192;
-				Data.skillColourG = 46;
-				Data.skillColourB = 46;
 				Paint.color_skill = new Color(192, 46, 46, 170);
 			}else if(skillChosen.equals("Strength")){
 				Data.chosenSkill = 2;
 				Data.skillString = "Strength";
-				Data.skillColourR = 46;
-				Data.skillColourG = 134;
-				Data.skillColourB = 55;
 				Paint.color_skill = new Color(46, 134, 55, 170);
 			}else if(skillChosen.equals("Defence")){
 				Data.chosenSkill = 1;
 				Data.skillString = "Defence";
-				Data.skillColourR = 89;
-				Data.skillColourG = 144;
-				Data.skillColourB = 255;
 				Paint.color_skill = new Color(89, 144, 255, 170);
 			}else if(skillChosen.equals("Range")){
 				Data.chosenSkill = 4;
 				Data.skillString = "Range";
-				Data.skillColourR = 168;
-				Data.skillColourG = 108;
-				Data.skillColourB = 39;
 				Paint.color_skill = new Color(168, 108, 39, 170);
 			}else if(skillChosen.equals("Magic")){
 				Data.chosenSkill = 6;
 				Data.skillString = "Magic";
-				Data.skillColourR = 35;
-				Data.skillColourG = 158;
-				Data.skillColourB = 210;
 				Paint.color_skill = new Color(35, 158, 210, 170);
 			}
 			
