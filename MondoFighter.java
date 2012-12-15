@@ -30,6 +30,7 @@ import org.powerbot.game.api.util.Random;
 import org.powerbot.game.bot.Context;
 import org.powerbot.game.client.Client;
 
+import tasks.Alchemy;
 import tasks.Antiban;
 import tasks.LootItems;
 import tasks.NoFoodLogOut;
@@ -84,7 +85,7 @@ public class MondoFighter extends ActiveScript implements PaintListener, MouseLi
 			while(GUI.guiWait) {
 				Task.sleep(100);
 			}			
-			provide(new WalkBack(), new NoFoodLogOut(), new Potions(), new LootItems(), new Combat(), new Antiban()); 
+			provide(new WalkBack(), new NoFoodLogOut(), new Potions(), new Alchemy(), new LootItems(), new Combat(), new Antiban()); 
 			
             Data.startXP = Skills.getExperience(Data.chosenSkill);
             Data.startConstXP = Skills.getExperience(3);
@@ -95,8 +96,9 @@ public class MondoFighter extends ActiveScript implements PaintListener, MouseLi
             Data.LOG_OUT = false;
             Data.START_LOCATION = Players.getLocal().getLocation(); 
             Data.oldKills = Data.killCounter;
-            System.out.println("Starting MondoFighter.");
+            System.out.println("Starting MondoFighter.");            
             Data.totalHp = Integer.parseInt(Widgets.get(748, 8).getText());
+            
     }
     
     @Override
@@ -107,7 +109,7 @@ public class MondoFighter extends ActiveScript implements PaintListener, MouseLi
             System.out.println("Gained " + (Skills.getExperience(3) - Data.startConstXP) + " Constitution experience, at " + Methods.kFormat(Methods.getXpHr(3)) + " XP per hour.");
             System.out.println("Gained " + (Skills.getRealLevel(Data.chosenSkill) - Data.startLevel) + " levels in " + Data.skillString + ".");
             System.out.println("Gained " + (Skills.getRealLevel(3) - Data.startConstLevel) + " levels in Constitution.");
-            System.out.println("Killed " + Data.killCounter + "NPCs, at " + Methods.getPerHour(Data.killCounter) + " per hour.");
+            System.out.println("Killed " + Data.killCounter + " NPCs, at " + Methods.getPerHour(Data.killCounter) + " per hour.");
             System.out.println("Thanks for using MondoFighter!");
     }
 

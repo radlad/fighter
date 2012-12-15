@@ -50,7 +50,6 @@ public class Combat extends Node {
 				&& Players.getLocal() != null && Players.getLocal().getInteracting() == null && !Data.LOG_OUT;
 	}
 
-	// Players.getLocal().getInteracting() == null
 	@Override
 	public void execute() {	
 		final NPC npc = NPCs.getNearest(MobFilter);

@@ -27,6 +27,8 @@ import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.TitledBorder;
 
+import methods.Methods;
+
 import org.powerbot.game.api.methods.interactive.NPCs;
 
 import data.Data;
@@ -91,6 +93,7 @@ public class GUI extends JFrame {
 			Data.lootRadiusStr = loot_radius_field.getText();
 			Data.fighterRadius = Integer.parseInt(Data.fighterRadiusStr);
 			Data.lootRadius = Integer.parseInt(Data.lootRadiusStr);
+			
 
 			Data.lootSetting = enable_loot_chkbox.isSelected() ? true : false;
 			Data.lootRareSetting = LOOT_rdt_chkbox.isSelected() ? true : false;
@@ -102,6 +105,7 @@ public class GUI extends JFrame {
 			Data.hoverPlayer = ANTIBAN_chkbox_hoverplayer.isSelected() ? true : false;
 			Data.eatAt = eat_at_slider.getValue();		
 			Data.useMomentum = MISC_momentum_chkbox.isSelected() ? true : false;
+			Data.useAlchemy = alchemy_enable.isSelected() ? true : false;
 			Data.useFood = food_use_chkbox.isSelected() ? true : false;
 			Data.usePotions = use_potions_chkbox.isSelected() ? true : false;
 			
@@ -210,6 +214,25 @@ public class GUI extends JFrame {
 		LOOT_selected_list.setModel(Data.LOOT_selected_item);
 	}
 	
+	private void alchemy_addActionPerformed(ActionEvent e) {
+		if ((alchemy_txt_field.getText() != "") && (alchemy_txt_field.getText() != null)) {			
+			Data.selectedAlchemyItems.add(alchemy_txt_field.getText());
+			Data.alchemy_selected_item.addElement(alchemy_txt_field.getText());			
+		}
+		alchemy_list.setModel(Data.alchemy_selected_item);
+	}
+	
+	private void alchemy_refreshActionPerformed(ActionEvent e) {			
+		alchemy_list.setModel(Data.alchemy_selected_item);
+	}
+	
+	private void alchemy_clearActionPerformed(ActionEvent e) {		
+		alchemy_list.removeAll();
+		Data.selectedAlchemyItems.clear();
+		Data.alchemy_selected_item.clear();
+		alchemy_list.setModel(Data.alchemy_selected_item);
+	}
+	
 	private void initComponents() {
 		tabbed_pane = new JTabbedPane();
 		panel1 = new JPanel();
@@ -256,6 +279,19 @@ public class GUI extends JFrame {
 		loot_help4 = new JLabel();
 		panel11 = new JPanel();
 		panel16 = new JPanel();
+		panel5 = new JPanel();
+		panel22 = new JPanel();
+		panel23 = new JPanel();
+		alchemy_txt_field = new JTextField();
+		panel25 = new JPanel();
+		scrollPane4 = new JScrollPane();
+		alchemy_list = new JList();
+		alchemy_refresh = new JButton();
+		alchemy_clear = new JButton();
+		alchemy_help1 = new JLabel();
+		alchemy_add = new JButton();
+		alchemy_enable = new JCheckBox();
+		panel24 = new JPanel();
 		panel4 = new JPanel();
 		food_type = new JComboBox<>();
 		eat_at_slider = new JSlider();
@@ -297,6 +333,16 @@ public class GUI extends JFrame {
 			});
 		
 		LOOT_selected_list.setModel(new javax.swing.AbstractListModel() {
+			String[] strings = {};
+			public int getSize() {
+				 return strings.length;
+			}
+			public Object getElementAt(int i) {
+				 return strings[i];
+			}
+			});
+		
+		alchemy_list.setModel(new javax.swing.AbstractListModel() {
 			String[] strings = {};
 			public int getSize() {
 				 return strings.length;
@@ -786,6 +832,173 @@ public class GUI extends JFrame {
 				}
 			}
 			tabbed_pane.addTab("Loot", panel3);
+			
+			//======== panel5 ========
+			{
+				panel5.setLayout(null);
+
+				//======== panel22 ========
+				{
+					panel22.setLayout(null);
+
+					{ // compute preferred size
+						Dimension preferredSize = new Dimension();
+						for(int i = 0; i < panel22.getComponentCount(); i++) {
+							Rectangle bounds = panel22.getComponent(i).getBounds();
+							preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+							preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+						}
+						Insets insets = panel22.getInsets();
+						preferredSize.width += insets.right;
+						preferredSize.height += insets.bottom;
+						panel22.setMinimumSize(preferredSize);
+						panel22.setPreferredSize(preferredSize);
+					}
+				}
+				panel5.add(panel22);
+				panel22.setBounds(new Rectangle(new Point(10, 15), panel22.getPreferredSize()));
+
+				//======== panel23 ========
+				{
+					panel23.setBorder(new TitledBorder("Alchemy Settings"));
+					panel23.setLayout(null);
+
+					//---- alchemy_txt_field ----
+					alchemy_txt_field.setHorizontalAlignment(SwingConstants.CENTER);
+					panel23.add(alchemy_txt_field);
+					alchemy_txt_field.setBounds(35, 70, 165, 30);
+
+					//======== panel25 ========
+					{
+						panel25.setBorder(new TitledBorder("Items to Alchemise"));
+						panel25.setLayout(null);
+
+						//======== scrollPane4 ========
+						{
+							scrollPane4.setViewportView(alchemy_list);
+						}
+						panel25.add(scrollPane4);
+						scrollPane4.setBounds(10, 20, 220, 130);
+
+						//---- alchemy_refresh ----
+						alchemy_refresh.setText("Refresh");
+						alchemy_refresh.addActionListener(new ActionListener() {
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								alchemy_refreshActionPerformed(e);
+								
+							}
+						});
+						panel25.add(alchemy_refresh);
+						alchemy_refresh.setBounds(10, 160, 105, alchemy_refresh.getPreferredSize().height);
+
+						//---- alchemy_clear ----
+						alchemy_clear.setText("Clear");
+						alchemy_clear.addActionListener(new ActionListener() {
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								alchemy_clearActionPerformed(e);
+								
+							}
+						});
+						panel25.add(alchemy_clear);
+						alchemy_clear.setBounds(125, 160, 102, alchemy_clear.getPreferredSize().height);
+
+						{ // compute preferred size
+							Dimension preferredSize = new Dimension();
+							for(int i = 0; i < panel25.getComponentCount(); i++) {
+								Rectangle bounds = panel25.getComponent(i).getBounds();
+								preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+								preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+							}
+							Insets insets = panel25.getInsets();
+							preferredSize.width += insets.right;
+							preferredSize.height += insets.bottom;
+							panel25.setMinimumSize(preferredSize);
+							panel25.setPreferredSize(preferredSize);
+						}
+					}
+					panel23.add(panel25);
+					panel25.setBounds(230, 15, 240, 195);
+
+					//---- alchemy_help1 ----
+					alchemy_help1.setText("Type name of item and press Add");
+					alchemy_help1.setHorizontalAlignment(SwingConstants.CENTER);
+					alchemy_help1.setFont(alchemy_help1.getFont().deriveFont(alchemy_help1.getFont().getSize() - 1f));
+					panel23.add(alchemy_help1);
+					alchemy_help1.setBounds(new Rectangle(new Point(40, 110), alchemy_help1.getPreferredSize()));
+
+					//---- alchemy_add ----
+					alchemy_add.setText("Add");
+					alchemy_add.addActionListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							alchemy_addActionPerformed(e);
+							
+						}
+					});
+					panel23.add(alchemy_add);
+					alchemy_add.setBounds(35, 130, 165, alchemy_add.getPreferredSize().height);
+
+					//---- alchemy_enable ----
+					alchemy_enable.setText("Enable High Alchemy?");
+					panel23.add(alchemy_enable);
+					alchemy_enable.setBounds(new Rectangle(new Point(55, 35), alchemy_enable.getPreferredSize()));
+
+					{ // compute preferred size
+						Dimension preferredSize = new Dimension();
+						for(int i = 0; i < panel23.getComponentCount(); i++) {
+							Rectangle bounds = panel23.getComponent(i).getBounds();
+							preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+							preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+						}
+						Insets insets = panel23.getInsets();
+						preferredSize.width += insets.right;
+						preferredSize.height += insets.bottom;
+						panel23.setMinimumSize(preferredSize);
+						panel23.setPreferredSize(preferredSize);
+					}
+				}
+				panel5.add(panel23);
+				panel23.setBounds(5, 5, 480, 225);
+
+				//======== panel24 ========
+				{
+					panel24.setBorder(new TitledBorder("Presets"));
+					panel24.setLayout(null);
+
+					{ // compute preferred size
+						Dimension preferredSize = new Dimension();
+						for(int i = 0; i < panel24.getComponentCount(); i++) {
+							Rectangle bounds = panel24.getComponent(i).getBounds();
+							preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+							preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+						}
+						Insets insets = panel24.getInsets();
+						preferredSize.width += insets.right;
+						preferredSize.height += insets.bottom;
+						panel24.setMinimumSize(preferredSize);
+						panel24.setPreferredSize(preferredSize);
+					}
+				}
+				panel5.add(panel24);
+				panel24.setBounds(5, 235, 480, 45);
+
+				{ // compute preferred size
+					Dimension preferredSize = new Dimension();
+					for(int i = 0; i < panel5.getComponentCount(); i++) {
+						Rectangle bounds = panel5.getComponent(i).getBounds();
+						preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+						preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+					}
+					Insets insets = panel5.getInsets();
+					preferredSize.width += insets.right;
+					preferredSize.height += insets.bottom;
+					panel5.setMinimumSize(preferredSize);
+					panel5.setPreferredSize(preferredSize);
+				}
+			}
+			tabbed_pane.addTab("Alchemy", panel5);
 
 
 			//======== panel4 ========
@@ -1208,6 +1421,19 @@ public class GUI extends JFrame {
 	private JLabel loot_help4;
 	private JPanel panel11;
 	private JPanel panel16;	
+	private JPanel panel5;
+	private JPanel panel22;
+	private JPanel panel23;
+	private JTextField alchemy_txt_field;
+	private JPanel panel25;
+	private JScrollPane scrollPane4;
+	private JList alchemy_list;
+	private JButton alchemy_refresh;
+	private JButton alchemy_clear;
+	private JLabel alchemy_help1;
+	private JButton alchemy_add;
+	private JCheckBox alchemy_enable;
+	private JPanel panel24;
 	private JPanel panel4;
 	private JComboBox<String> food_type;
 	private JSlider eat_at_slider;

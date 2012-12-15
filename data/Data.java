@@ -6,12 +6,14 @@ import javax.swing.DefaultListModel;
 
 import org.powerbot.game.api.methods.Widgets;
 import org.powerbot.game.api.util.Timer;
+import org.powerbot.game.api.wrappers.Area;
 import org.powerbot.game.api.wrappers.Tile;
 import org.powerbot.game.api.wrappers.widget.WidgetChild;
 
 public class Data {
 	public static ArrayList<String> selectedMonsters = new ArrayList<String>();
 	public static ArrayList<String> selectedItems = new ArrayList<String>();
+	public static ArrayList<String> selectedAlchemyItems = new ArrayList<String>();
 	public static ArrayList<Integer> selectedItemsInt = new ArrayList<Integer>();
 	public static ArrayList<Integer> selectedMonstersInt = new ArrayList<Integer>();
 	
@@ -19,6 +21,8 @@ public class Data {
 	public static DefaultListModel LOOT_selected_list_model = new DefaultListModel();
 	public static DefaultListModel NPC_selected_model = new DefaultListModel();
 	public static DefaultListModel LOOT_selected_item = new DefaultListModel();	
+	public static DefaultListModel alchemy_selected_item = new DefaultListModel();	
+	public static DefaultListModel alchemy_selected_list_model = new DefaultListModel();
 	
 	public static int foodId;
 	public static int RARE_ITEM_LIST[] = {1617,1631,1615,987,985,1247,1249,1216,1201,2366,1149,892,9342,2362,452,258,2999,3001,
@@ -66,6 +70,7 @@ public class Data {
 	public static boolean buryBones;
 	public static boolean bonesToPeaches;
 	public static boolean useMomentum;
+	public static boolean useAlchemy;
 	public static boolean useFood;
 	public static boolean usePotions;
 	public static boolean useActionSlot23;
@@ -86,6 +91,7 @@ public class Data {
 	public static WidgetChild eocButton3 = Widgets.get(640, 40);
 	public static WidgetChild eocButton4 = Widgets.get(640, 43);
 	public static WidgetChild eocButton5 = Widgets.get(640, 46);
+	public static WidgetChild eocButton6 = Widgets.get(640, 49);
 	public static WidgetChild runButton = Widgets.get(750, 0);		
 	public static int runEnergy = Integer.parseInt(Widgets.get(750, 6).getText());
 	public static int prayerPoints = Integer.parseInt(Widgets.get(749, 6).getText());

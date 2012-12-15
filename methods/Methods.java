@@ -1,13 +1,22 @@
 package methods;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Polygon;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 import org.powerbot.game.api.methods.Settings;
+import org.powerbot.game.api.methods.interactive.Players;
 import org.powerbot.game.api.methods.tab.Inventory;
 import org.powerbot.game.api.methods.tab.Skills;
 import org.powerbot.game.api.util.SkillData;
 import org.powerbot.game.api.util.SkillData.Rate;
+import org.powerbot.game.api.wrappers.Area;
+import org.powerbot.game.api.wrappers.Tile;
+import org.powerbot.game.api.wrappers.node.GroundItem;
+import org.powerbot.game.api.wrappers.node.Item;
+
 import data.Data;
 
 public class Methods {
@@ -47,8 +56,7 @@ public class Methods {
 	
 	public static void useMomentum() {
 		Data.eocMaximise.click(true);				
-		if (Data.eocButton1.validate()) {
-			Data.status = "Activating Momentum.";
+		if (Data.eocButton1.validate()) {			
 			System.out.println("Activating Momentum.");					
 			Data.eocButton1.click(true);					
 			Data.eocMinimise.click(true);					
@@ -83,10 +91,25 @@ public class Methods {
 			Data.eocMinimise.click(true);					
 		}	
 	}
+	public static void useActionBarButton6() {
+		Data.eocMaximise.click(true);				
+		if (Data.eocButton6.validate()) {			
+			Data.eocButton6.click(true);								
+		}	
+	}
 	
 	public static boolean hasPotion(int[] array) {
         for(int id : array) {
             if(Inventory.getCount(id) > 0) {
+                return true;      
+            }
+        }
+		return false;		
+	}
+	
+	public static boolean hasAlchemyItem() {
+        for(Item i : Inventory.getItems()) {
+            if(Data.alchemy_selected_item.contains(i.getName())) {
                 return true;      
             }
         }

@@ -16,11 +16,14 @@ import javax.imageio.ImageIO;
 
 import methods.Methods;
 
+import org.powerbot.game.api.methods.Calculations;
 import org.powerbot.game.api.methods.Game;
 import org.powerbot.game.api.methods.input.Mouse;
 import org.powerbot.game.api.methods.interactive.NPCs;
 import org.powerbot.game.api.methods.node.GroundItems;
 import org.powerbot.game.api.methods.tab.Skills;
+import org.powerbot.game.api.wrappers.Area;
+import org.powerbot.game.api.wrappers.Tile;
 import org.powerbot.game.api.wrappers.interactive.NPC;
 import org.powerbot.game.api.wrappers.node.GroundItem;
 
@@ -66,6 +69,7 @@ public class Paint {
         }
     }
     
+    
 
 
     public final static Color color1 = new Color(0, 0, 0, 221);
@@ -74,6 +78,7 @@ public class Paint {
     public final static Color color4 = new Color(0, 0, 0, 75);
     public final static Color color5 = new Color(255, 0, 0);
     public final static Color color6 = new Color(255, 255, 255);
+    public final static Color color_grey = new Color(73, 73, 73);
     public static Color color_skill = new Color(0, 0, 0, 170);
    // public final static Color color_skill = new Color(Data.skillColourR, Data.skillColourG, Data.skillColourB, 170);
     public final static Color color_const = new Color(255, 43, 43, 170);
@@ -112,7 +117,8 @@ public class Paint {
 	        }
 	        if (item != null) {
 	        	drawItem(g1, item, Color.CYAN, 200);
-	        }        
+	        }	        
+
         }
         
         if (showPaint) { 

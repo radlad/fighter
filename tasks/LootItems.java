@@ -55,21 +55,22 @@ public class LootItems extends Node {
 		GroundItem item = GroundItems.getNearest(ItemFilter);
 		GroundItem rareitem = GroundItems.getNearest(RareItemFilter);
 		
-		if (!item.isOnScreen()) {
-			System.out.println("Turning to item.");
-			Camera.setPitch(Random.nextInt(10, 25));
-			Camera.turnTo(item);
-		} else if (!Inventory.isFull()){		
-			System.out.println("Picking up " + item.getGroundItem().getName() + ".");
-			Data.status = "Picking up item.";
-				if(item.click(false) && Menu.isOpen() && Menu.contains("Take")) {						
-					Menu.select("Take", item.getGroundItem().getName());				
-				}
-			Mouse.move(currentMouseX + Random.nextInt(-20, 20), currentMouseY + Random.nextInt(-20, 20));
-			Camera.setPitch(currentPitch + Random.nextInt(20, 70));
-	        Camera.setAngle(currentAngle + Random.nextInt(-200, 200));
+		if (item != null) {
+			if (!item.isOnScreen()) {
+				System.out.println("Turning to item.");
+				Camera.setPitch(Random.nextInt(10, 25));
+				Camera.turnTo(item);
+			} else if (!Inventory.isFull()){		
+				System.out.println("Picking up " + item.getGroundItem().getName() + ".");
+				Data.status = "Picking up item.";
+					if(item.click(false) && Menu.isOpen() && Menu.contains("Take")) {						
+						Menu.select("Take", item.getGroundItem().getName());				
+					}
+				Mouse.move(currentMouseX + Random.nextInt(-20, 20), currentMouseY + Random.nextInt(-20, 20));
+				Camera.setPitch(currentPitch + Random.nextInt(20, 70));
+		        Camera.setAngle(currentAngle + Random.nextInt(-200, 200));
+			}		
 		}
-
 		
 		if (Data.lootRareSetting == true && rareitem != null) {
 			if (!rareitem.isOnScreen()) {
