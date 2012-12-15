@@ -1,5 +1,8 @@
 package data;
 
+import gui.Paint;
+
+import java.awt.FontMetrics;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;

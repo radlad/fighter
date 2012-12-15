@@ -81,13 +81,13 @@ public class Combat extends Node {
 		} else {
 			if (p.getInteracting() == null && !p.isMoving()) {
 				cnpc.interact("Attack");
-					Data.status = "Fighting attacker!";
+					Data.status = "Fighting NPC!";
 					System.out.println("Attacking monster.");
 					Task.sleep(Random.nextInt(400, 600));
 				} else if (!cnpc.isOnScreen()){
 					Camera.setPitch(Random.nextInt(1, 25));
 					Camera.turnTo(cnpc);				
-					Data.status = "Finding attacker.";
+					Data.status = "Finding NPC.";
 					System.out.println("Finding monster.");
 				}	
 		}

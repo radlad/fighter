@@ -376,7 +376,7 @@ public class GUI extends JFrame {
 				radius_reminder1.setBounds(235, 65, 205, 15);
 
 				//---- radius_reminder2 ----
-				radius_reminder2.setText("Recommended to be less than 20.");
+				radius_reminder2.setText("Recommended to be less than 10.");
 				radius_reminder2.setFont(radius_reminder2.getFont().deriveFont(radius_reminder2.getFont().getSize() - 1f));
 				panel1.add(radius_reminder2);
 				radius_reminder2.setBounds(new Rectangle(new Point(265, 80), radius_reminder2.getPreferredSize()));
@@ -1142,7 +1142,7 @@ public class GUI extends JFrame {
 					potions_actionbar_combo_slot5.setBounds(330, 80, 135, 20);
 
 					//---- potions_actionbar_slot5 ----
-					potions_actionbar_slot5.setText("Antifire Potion:");
+					potions_actionbar_slot5.setText("Antifire Potion (Not implemented):");
 					panel20.add(potions_actionbar_slot5);
 					potions_actionbar_slot5.setBounds(330, 60, 83, 14);
 
@@ -1306,7 +1306,7 @@ public class GUI extends JFrame {
 					panel6.setPreferredSize(preferredSize);
 				}
 			}
-			tabbed_pane.addTab("Misc", panel6);
+			tabbed_pane.addTab("Extras", panel6);
 
 		}
 		contentPane.add(tabbed_pane);
@@ -1352,7 +1352,8 @@ public class GUI extends JFrame {
 		label3.setBounds(10, 5, 180, 50);
 
 		//---- label4 ----
-		label4.setText("Version 1.0 - Updated: 12/12/2012");
+		label4.setText("Version 1.0 - Updated: 15/12/2012");
+		label4.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(label4);
 		label4.setBounds(new Rectangle(new Point(10, 60), label4.getPreferredSize()));
 		contentPane.add(separator1);

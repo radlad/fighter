@@ -3,6 +3,7 @@ package gui;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -92,7 +93,8 @@ public class Paint {
     public final static Font font1 = new Font("Myriad Pro", 1, 16);
     public final static Font font2 = new Font("Myriad Pro", 0, 12);
     public final static Font font3 = new Font("Myriad Pro", 1, 10);
-    public final static Font font4 = new Font("Myriad Pro", 0, 10);
+    public final static Font font4 = new Font("Myriad Pro", 0, 10); 
+    
 
 
 	public static void doPaint(Graphics g1) {		
@@ -108,15 +110,20 @@ public class Paint {
         int xpCurrentConst = Skills.getExperienceRequired(Skills.getRealLevel(3));
         int xpNextConst = Skills.getExperienceRequired(Skills.getRealLevel(3) + 1);
         int xpPercConst = (xpCurrentConst / xpNextConst)*100;
-        int xpBarLengthConst = xpPercConst*262;
-        
+        int xpBarLengthConst = xpPercConst*262;  
         
         if (showNPC) {        
 	        if (nearestMob != null) {
 	        	drawNPC(g1, nearestMob, Color.RED, 200);
 	        }
 	        if (item != null) {
-	        	drawItem(g1, item, Color.CYAN, 200);
+	        	drawItem(g1, item, Color.CYAN, 200);	        	
+	        	g1.setFont(font2);	  
+	        	g1.setColor(Color.BLACK);
+	        	g1.drawString(item.getGroundItem().getName() + " x" + item.getGroundItem().getStackSize(), (int) item.getCentralPoint().getX()+26, (int) (item.getCentralPoint().getY()+1));
+	        	g1.setColor(Color.CYAN);
+	        	g1.drawString(item.getGroundItem().getName() + " x" + item.getGroundItem().getStackSize(), (int) item.getCentralPoint().getX()+25, (int) (item.getCentralPoint().getY()));
+	        	
 	        }	        
 
         }
@@ -188,7 +195,7 @@ public class Paint {
           g.fillRect(230, 334, 69, 14);
           g.setColor(color6);
           g.drawString("Toggle Paint", 15, 345);
-          g.drawString("Toggle NPC", 92, 345);
+          g.drawString("Toggle Draw", 92, 345);
           g.drawString("Show GUI", 168, 345);
           g.drawString("Pause Bot", 244, 345);       	
         }

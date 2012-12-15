@@ -154,8 +154,7 @@ public class MondoFighter extends ActiveScript implements PaintListener, MouseLi
 		if (Lobby.isOpen()) {
 			stop();
 		}
-
-		    return Random.nextInt(50, 100);
+		return Random.nextInt(50, 100);
 	}
 
 	@Override
@@ -213,7 +212,7 @@ public class MondoFighter extends ActiveScript implements PaintListener, MouseLi
 			Data.LOG_OUT = true;
 			if (!Players.getLocal().isInCombat()) {				
 				Game.logout(true);
-				stop();	
+				shutdown();	
 			}					
 		}
 	}

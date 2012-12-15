@@ -16,7 +16,7 @@ public class NoFoodLogOut extends Node {
 
 	@Override
 	public void execute() {	
-		if (!Lobby.isOpen()) {
+		if (Game.isLoggedIn()) {
 				Data.LOG_OUT = true;
 				System.out.println("Out of food, now signing out.");
 	            System.out.println("Stopping Brawler.");

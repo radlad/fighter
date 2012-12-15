@@ -16,15 +16,16 @@ public class Alchemy extends Node {
 	}
 
 	@Override
-	public void execute() {
-		for (Item i : Inventory.getItems()) {
-            if(Data.alchemy_selected_item.contains(i.getName())) {
-            	Data.status = "Alchemising...";
-                Methods.useActionBarButton6();
-                i.getWidgetChild().interact("Cast");
-                Data.eocMinimise.click(true);
-            }
+	public void execute() {		
+		while (Methods.hasAlchemyItem()) {
+			for (Item i : Inventory.getItems()) {
+	           if (Data.alchemy_selected_item.contains(i.getName())) {
+	            	Data.status = "Alchemizing...";
+	                Methods.useActionBarButton6();
+	                i.getWidgetChild().interact("Cast");
+	           }
+			}   
 		}
+        Data.eocMinimise.click(true);		
 	}
-
 }
