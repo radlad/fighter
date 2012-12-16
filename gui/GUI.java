@@ -195,6 +195,13 @@ public class GUI extends JFrame {
 		NPC_selected_list.setModel(Data.NPC_selected_model);
 	}
 	
+	private void npc_save_btnActionPerformed(ActionEvent e) {
+		//TODO		
+	}
+	private void npc_load_btnActionPerformed(ActionEvent e) {
+		//TODO		
+	}
+	
 	private void LOOT_add_btnActionPerformed(ActionEvent e) {
 		if ((loot_name_field.getText() != "") && (loot_name_field.getText() != null)) {			
 			Data.selectedItems.add(loot_name_field.getText());
@@ -266,6 +273,9 @@ public class GUI extends JFrame {
 		panel8 = new JPanel();
 		panel9 = new JPanel();
 		panel10 = new JPanel();
+		npc_save_btn = new JButton();
+		npc_load_btn = new JButton();
+		npc_preset_combobox = new JComboBox();
 		panel3 = new JPanel();
 		enable_loot_chkbox = new JCheckBox();
 		scrollPane3 = new JScrollPane();
@@ -353,7 +363,7 @@ public class GUI extends JFrame {
 			});
 
 		//======== this ========
-		setTitle("Brawler v1.0 Settings");
+		setTitle("MondoFighter v1.0 Settings");
 		setBackground(new Color(153, 0, 0));
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setResizable(false);
@@ -516,7 +526,7 @@ public class GUI extends JFrame {
 
 				//======== panel15 ========
 				{
-					panel15.setBorder(new TitledBorder("All Presets"));
+					panel15.setBorder(new TitledBorder("All Presets (coming soon)"));
 					panel15.setLayout(null);
 
 					{ // compute preferred size
@@ -660,8 +670,37 @@ public class GUI extends JFrame {
 
 				//======== panel10 ========
 				{
-					panel10.setBorder(new TitledBorder("Presets"));
+					panel10.setBorder(new TitledBorder("Presets (coming soon)"));
 					panel10.setLayout(null);
+					
+					//---- npc_save_btn ----
+					npc_save_btn.setText("Save");
+					npc_save_btn.addActionListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							npc_save_btnActionPerformed(e);
+							
+						}
+					});
+					panel10.add(npc_save_btn);
+					npc_save_btn.setBounds(405, 10, 70, 28);
+
+					//---- npc_load_btn ----
+					npc_load_btn.setText("Load");
+					npc_load_btn.addActionListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							npc_load_btnActionPerformed(e);
+							
+						}
+					});
+					panel10.add(npc_load_btn);
+					npc_load_btn.setBounds(325, 10, 70, 28);
+
+					//---- npc_preset_combobox ----
+					npc_preset_combobox.setEditable(true);
+					panel10.add(npc_preset_combobox);
+					npc_preset_combobox.setBounds(60, 15, 250, 20);
 
 					{ // compute preferred size
 						Dimension preferredSize = new Dimension();
@@ -775,7 +814,7 @@ public class GUI extends JFrame {
 
 				//======== panel11 ========
 				{
-					panel11.setBorder(new TitledBorder("Presets"));
+					panel11.setBorder(new TitledBorder("Presets (coming soon)"));
 					panel11.setLayout(null);
 
 					{ // compute preferred size
@@ -964,7 +1003,7 @@ public class GUI extends JFrame {
 
 				//======== panel24 ========
 				{
-					panel24.setBorder(new TitledBorder("Presets"));
+					panel24.setBorder(new TitledBorder("Presets (coming soon)"));
 					panel24.setLayout(null);
 
 					{ // compute preferred size
@@ -1059,7 +1098,7 @@ public class GUI extends JFrame {
 
 				//======== panel13 ========
 				{
-					panel13.setBorder(new TitledBorder("Presets"));
+					panel13.setBorder(new TitledBorder("Presets (coming soon)"));
 					panel13.setLayout(null);
 
 					{ // compute preferred size
@@ -1170,7 +1209,7 @@ public class GUI extends JFrame {
 
 				//======== panel21 ========
 				{
-					panel21.setBorder(new TitledBorder("Presets"));
+					panel21.setBorder(new TitledBorder("Presets (coming soon)"));
 					panel21.setLayout(null);
 
 					{ // compute preferred size
@@ -1272,7 +1311,7 @@ public class GUI extends JFrame {
 
 				//======== panel18 ========
 				{
-					panel18.setBorder(new TitledBorder("Presets"));
+					panel18.setBorder(new TitledBorder("Presets (coming soon)"));
 					panel18.setLayout(null);
 
 					{ // compute preferred size
@@ -1345,17 +1384,17 @@ public class GUI extends JFrame {
 		fill_reminder.setBounds(50, 380, 365, fill_reminder.getPreferredSize().height);
 
 		//---- label3 ----
-		label3.setText("Brawler");
+		label3.setText("MondoFighter");
 		label3.setHorizontalAlignment(SwingConstants.CENTER);
-		label3.setFont(new Font("Segoe UI", Font.BOLD, 32));
+		label3.setFont(new Font("Myriad Pro", Font.PLAIN, 32));
 		contentPane.add(label3);
-		label3.setBounds(10, 5, 180, 50);
+		label3.setBounds(0, 5, 570, 50);
 
 		//---- label4 ----
-		label4.setText("Version 1.0 - Updated: 15/12/2012");
+		label4.setText("Version 1.0 - Updated: 12/12/2012");
 		label4.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(label4);
-		label4.setBounds(new Rectangle(new Point(10, 60), label4.getPreferredSize()));
+		label4.setBounds(10, 60, 550, label4.getPreferredSize().height);
 		contentPane.add(separator1);
 		separator1.setBounds(0, 435, 570, 5);
 
@@ -1401,7 +1440,7 @@ public class GUI extends JFrame {
 	private JScrollPane scrollPane1;
 	private JList NPC_unselected_list;
 	private JScrollPane scrollPane2;
-	private JList NPC_selected_list;
+	public static JList NPC_selected_list;
 	private JButton NPC_refresh_btn;
 	private JButton NPC_add_btn;
 	private JButton NPC_clear_btn;
@@ -1409,6 +1448,9 @@ public class GUI extends JFrame {
 	private JPanel panel8;
 	private JPanel panel9;
 	private JPanel panel10;
+	private JButton npc_save_btn;
+	private JButton npc_load_btn;
+	private JComboBox npc_preset_combobox;
 	private JPanel panel3;
 	private JCheckBox enable_loot_chkbox;
 	private JScrollPane scrollPane3;

@@ -1,19 +1,16 @@
 package data;
 
-import gui.Paint;
-
-import java.awt.FontMetrics;
 import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 
 import org.powerbot.game.api.methods.Widgets;
 import org.powerbot.game.api.util.Timer;
-import org.powerbot.game.api.wrappers.Area;
 import org.powerbot.game.api.wrappers.Tile;
 import org.powerbot.game.api.wrappers.widget.WidgetChild;
 
 public class Data {
+	
 	public static ArrayList<String> selectedMonsters = new ArrayList<String>();
 	public static ArrayList<String> selectedItems = new ArrayList<String>();
 	public static ArrayList<String> selectedAlchemyItems = new ArrayList<String>();

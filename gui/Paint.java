@@ -195,7 +195,7 @@ public class Paint {
           g.fillRect(230, 334, 69, 14);
           g.setColor(color6);
           g.drawString("Toggle Paint", 15, 345);
-          g.drawString("Toggle Draw", 92, 345);
+          g.drawString("Toggle Draw", 91, 345);
           g.drawString("Show GUI", 168, 345);
           g.drawString("Pause Bot", 244, 345);       	
         }

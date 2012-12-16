@@ -1,11 +1,18 @@
 package methods;
 
+import gui.GUI;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Polygon;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.Properties;
 
+import org.powerbot.game.api.methods.Environment;
 import org.powerbot.game.api.methods.Settings;
 import org.powerbot.game.api.methods.interactive.Players;
 import org.powerbot.game.api.methods.tab.Inventory;
@@ -115,5 +122,4 @@ public class Methods {
         }
 		return false;		
 	}
-
 }

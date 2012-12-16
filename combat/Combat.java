@@ -57,8 +57,8 @@ public class Combat extends Node {
 		final Player p = Players.getLocal();
 		Data.oldKills = Data.killCounter;	
 
-		if (cnpc == null || cnpc.equals(null)) {
-			if (npc == null || npc.equals(null)) {
+		if (cnpc == null) {
+			if (npc == null) {
 				Data.status = "Waiting for NPC...";
 				Task.sleep(50);
 			} else {		
