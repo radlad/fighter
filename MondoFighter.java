@@ -27,6 +27,7 @@ import org.powerbot.game.api.methods.tab.Skills;
 import org.powerbot.game.api.methods.widget.Lobby;
 import org.powerbot.game.api.methods.widget.WidgetCache;
 import org.powerbot.game.api.util.Random;
+import org.powerbot.game.api.wrappers.Tile;
 import org.powerbot.game.bot.Context;
 import org.powerbot.game.client.Client;
 
@@ -94,7 +95,11 @@ public class MondoFighter extends ActiveScript implements PaintListener, MouseLi
             Data.startConstLevel = Skills.getRealLevel(Skills.CONSTITUTION);  
             Data.startDefLevel = Skills.getRealLevel(Skills.DEFENSE);  
             Data.LOG_OUT = false;
-            Data.START_LOCATION = Players.getLocal().getLocation(); 
+            Data.START_LOCATION = Players.getLocal().getLocation();
+            Data.START_POS_X = new Tile (Players.getLocal().getLocation().getX()+Data.fighterRadius, Players.getLocal().getLocation().getY(), 0);
+            Data.START_POS_Y = new Tile (Players.getLocal().getLocation().getX(), Players.getLocal().getLocation().getY()+Data.fighterRadius, 0);
+            Data.START_NEG_X = new Tile (Players.getLocal().getLocation().getX()-Data.fighterRadius, Players.getLocal().getLocation().getY(), 0);
+            Data.START_NEG_Y = new Tile (Players.getLocal().getLocation().getX(), Players.getLocal().getLocation().getY()-Data.fighterRadius, 0);
             Data.oldKills = Data.killCounter;
             System.out.println("Starting MondoFighter.");            
             Data.totalHp = Integer.parseInt(Widgets.get(748, 8).getText());

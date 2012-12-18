@@ -35,6 +35,10 @@ public class Data {
 	
 	public static int totalHp;
 	public static Tile START_LOCATION;
+	public static Tile START_POS_X;
+	public static Tile START_POS_Y;
+	public static Tile START_NEG_X;
+	public static Tile START_NEG_Y;
 	public static String fighterRadiusStr;
 	public static String lootRadiusStr;
 	public static int fighterRadius;

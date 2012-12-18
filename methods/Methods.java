@@ -1,26 +1,17 @@
 package methods;
 
-import gui.GUI;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Polygon;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.Properties;
-
-import org.powerbot.game.api.methods.Environment;
 import org.powerbot.game.api.methods.Settings;
-import org.powerbot.game.api.methods.interactive.Players;
 import org.powerbot.game.api.methods.tab.Inventory;
 import org.powerbot.game.api.methods.tab.Skills;
 import org.powerbot.game.api.util.SkillData;
 import org.powerbot.game.api.util.SkillData.Rate;
-import org.powerbot.game.api.wrappers.Area;
 import org.powerbot.game.api.wrappers.Tile;
+import org.powerbot.game.api.wrappers.interactive.NPC;
 import org.powerbot.game.api.wrappers.node.GroundItem;
 import org.powerbot.game.api.wrappers.node.Item;
 
@@ -60,6 +51,42 @@ public class Methods {
 		int perHour = (int) (integer * 3600000D / (System.currentTimeMillis() - Data.startTime));
 		return perHour;		
 	}
+	
+    public static void drawNPC(final Graphics g1, final NPC npc, final Color color, final int alpha) {    	
+        if (npc != null) {
+                        g1.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha));
+                        for (Polygon p1 : npc.getBounds()) {
+                                        g1.fillPolygon(p1);
+                        }
+        }
+    }
+    
+    public static void drawItem(final Graphics g1, final GroundItem item, final Color color, final int alpha) {    	
+        if (item != null) {
+                        g1.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha));
+                        for (Polygon p1 : item.getBounds()) {
+                                        g1.fillPolygon(p1);
+                        }
+        }
+    }
+    
+    public static void drawTile(final Graphics g1, final Tile tile, final Color color, final int alpha) {    	
+        if (tile != null) {
+                        g1.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha));
+                        for (Polygon p1 : tile.getBounds()) {
+                                        g1.drawPolygon(p1);
+                        }
+        }
+    }
+    
+    public static void fillTile(final Graphics g1, final Tile tile, final Color color, final int alpha) {    	
+        if (tile != null) {
+                        g1.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha));
+                        for (Polygon p1 : tile.getBounds()) {
+                                        g1.fillPolygon(p1);
+                        }
+        }
+    }
 	
 	public static void useMomentum() {
 		Data.eocMaximise.click(true);				

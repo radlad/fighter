@@ -56,6 +56,10 @@ public class Combat extends Node {
 		final NPC cnpc = NPCs.getNearest(CombatFilter);
 		final Player p = Players.getLocal();
 		Data.oldKills = Data.killCounter;	
+		
+		if (Widgets.get(1218, 73).isOnScreen()) {
+			Widgets.get(1218, 73).click(true);
+		}
 
 		if (cnpc == null) {
 			if (npc == null) {
@@ -115,5 +119,6 @@ public class Combat extends Node {
 				Methods.useMomentum();						
 			}
 		}
+		
 	} 
 }

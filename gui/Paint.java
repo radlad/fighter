@@ -3,28 +3,18 @@ package gui;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.Point;
-import java.awt.Polygon;
 import java.awt.RenderingHints;
-import java.io.IOException;
-import java.net.URL;
-
-import javax.imageio.ImageIO;
-
 import methods.Methods;
 
-import org.powerbot.game.api.methods.Calculations;
 import org.powerbot.game.api.methods.Game;
 import org.powerbot.game.api.methods.input.Mouse;
 import org.powerbot.game.api.methods.interactive.NPCs;
+import org.powerbot.game.api.methods.interactive.Players;
 import org.powerbot.game.api.methods.node.GroundItems;
 import org.powerbot.game.api.methods.tab.Skills;
-import org.powerbot.game.api.wrappers.Area;
-import org.powerbot.game.api.wrappers.Tile;
 import org.powerbot.game.api.wrappers.interactive.NPC;
 import org.powerbot.game.api.wrappers.node.GroundItem;
 
@@ -42,37 +32,6 @@ public class Paint {
     private final static RenderingHints antialiasing = new RenderingHints(
             RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
     
-    private static Image getImage(String url) {
-        try {
-            return ImageIO.read(new URL(url));
-        } catch(IOException e) {
-            return null;
-        }
-    }    
-
-
-    
-    public static void drawNPC(final Graphics g1, final NPC npc, final Color color, final int alpha) {    	
-        if (npc != null) {
-                        g1.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha));
-                        for (Polygon p1 : npc.getBounds()) {
-                                        g1.fillPolygon(p1);
-                        }
-        }
-    }
-    
-    public static void drawItem(final Graphics g1, final GroundItem item, final Color color, final int alpha) {    	
-        if (item != null) {
-                        g1.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha));
-                        for (Polygon p1 : item.getBounds()) {
-                                        g1.fillPolygon(p1);
-                        }
-        }
-    }
-    
-    
-
-
     public final static Color color1 = new Color(0, 0, 0, 221);
     public final static Color color2 = new Color(0, 0, 0);
     public final static Color color3 = new Color(255, 255, 255, 221);
@@ -81,7 +40,6 @@ public class Paint {
     public final static Color color6 = new Color(255, 255, 255);
     public final static Color color_grey = new Color(73, 73, 73);
     public static Color color_skill = new Color(0, 0, 0, 170);
-   // public final static Color color_skill = new Color(Data.skillColourR, Data.skillColourG, Data.skillColourB, 170);
     public final static Color color_const = new Color(255, 43, 43, 170);
     public final static Color color_def = new Color(89, 144, 255, 170);
     public final static Color color_mouse = new Color(0, 255, 0, 210);
@@ -94,8 +52,6 @@ public class Paint {
     public final static Font font2 = new Font("Myriad Pro", 0, 12);
     public final static Font font3 = new Font("Myriad Pro", 1, 10);
     public final static Font font4 = new Font("Myriad Pro", 0, 10); 
-    
-
 
 	public static void doPaint(Graphics g1) {		
 		Graphics2D g = (Graphics2D)g1;
@@ -112,17 +68,31 @@ public class Paint {
         int xpPercConst = (xpCurrentConst / xpNextConst)*100;
         int xpBarLengthConst = xpPercConst*262;  
         
-        if (showNPC) {        
-	        if (nearestMob != null) {
-	        	drawNPC(g1, nearestMob, Color.RED, 200);
+        if (showNPC) {     
+        	
+        	if (nearestMob != null) {
+        		g1.setFont(font2); 
+        		g1.setColor(Color.RED);
+	        	if (nearestMob.isOnScreen()) {
+	        	g1.drawLine((int) Players.getLocal().getCentralPoint().getX(), (int) Players.getLocal().getCentralPoint().getY(), 
+	        			(int) nearestMob.getCentralPoint().getX(), (int) nearestMob.getCentralPoint().getY());
+	        	}
+	        	Methods.drawNPC(g1, nearestMob, Color.RED, 200);
+	        	g1.setColor(Color.BLACK);
+	        	g1.drawString(nearestMob.getName(), (int) nearestMob.getCentralPoint().getX()+26, (int) (nearestMob.getCentralPoint().getY()+1));
+	        	g1.setColor(Color.RED);
+	        	g1.drawString(nearestMob.getName(), (int) nearestMob.getCentralPoint().getX()+25, (int) (nearestMob.getCentralPoint().getY()));
+
 	        }
 	        if (item != null) {
-	        	drawItem(g1, item, Color.CYAN, 200);	        	
+	        	Methods.drawItem(g1, item, Color.CYAN, 200);	        	
 	        	g1.setFont(font2);	  
 	        	g1.setColor(Color.BLACK);
-	        	g1.drawString(item.getGroundItem().getName() + " x" + item.getGroundItem().getStackSize(), (int) item.getCentralPoint().getX()+26, (int) (item.getCentralPoint().getY()+1));
+	        	g1.drawString(item.getGroundItem().getName() + " x" + item.getGroundItem().getStackSize(),
+	        			(int) item.getCentralPoint().getX()+26, (int) (item.getCentralPoint().getY()+1));
 	        	g1.setColor(Color.CYAN);
-	        	g1.drawString(item.getGroundItem().getName() + " x" + item.getGroundItem().getStackSize(), (int) item.getCentralPoint().getX()+25, (int) (item.getCentralPoint().getY()));
+	        	g1.drawString(item.getGroundItem().getName() + " x" + item.getGroundItem().getStackSize(),
+	        			(int) item.getCentralPoint().getX()+25, (int) (item.getCentralPoint().getY()));
 	        	
 	        }	        
 
@@ -163,16 +133,13 @@ public class Paint {
           g.fillRect(255, 368, 263, 20);
           if (!showDef && Data.chosenSkill != 1) {
         	  g.setColor(color_skill);          
-              //g.fillRect(256, 349, xpBarLength, 18);
-              g.fillRect(256, 349, 131, 19);
+              g.fillRect(256, 349, xpBarLength, 19);              
           } else {
         	  g.setColor(color_def);          
-              //g.fillRect(256, 349, xpBarLength, 18);
-              g.fillRect(256, 349, 131, 19); 
+              g.fillRect(256, 349, xpBarLength, 19);              
           }
           g.setColor(color_const);          
-          //g.fillRect(256, 369, xpBarLengthConst, 18);
-          g.fillRect(256, 369, 188, 19);
+          g.fillRect(256, 369, xpBarLengthConst, 19);          
           g.setColor(color2);
           g.drawLine(256, 368, 518, 368);
           g.setFont(font3);
