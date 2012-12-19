@@ -149,4 +149,8 @@ public class Methods {
         }
 		return false;		
 	}
+	
+    public static boolean hasAntifireOn() {
+        return Settings.get(1299) > 0;
+}
 }

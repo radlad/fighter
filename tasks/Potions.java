@@ -60,6 +60,14 @@ public class Potions extends Node {
 			}
 		}
 		
+		if (Data.useActionSlot5 && Methods.hasPotion(Data.afPotion)) {
+			if (!Methods.hasAntifireOn()) {
+				Data.status = "Drinking Antifire Potion.";
+				System.out.println("Drinking Antifire Potion.");
+				Methods.useActionBarButton5();
+			}
+		}
+		
 	}
 
 }

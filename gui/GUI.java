@@ -1181,7 +1181,7 @@ public class GUI extends JFrame {
 					potions_actionbar_combo_slot5.setBounds(330, 80, 135, 20);
 
 					//---- potions_actionbar_slot5 ----
-					potions_actionbar_slot5.setText("Antifire Potion (Not implemented):");
+					potions_actionbar_slot5.setText("Antifire Potion:");
 					panel20.add(potions_actionbar_slot5);
 					potions_actionbar_slot5.setBounds(330, 60, 83, 14);
 
