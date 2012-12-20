@@ -5,6 +5,7 @@ import methods.Methods;
 import org.powerbot.core.script.job.Task;
 import org.powerbot.core.script.job.state.Node;
 import org.powerbot.game.api.methods.Calculations;
+import org.powerbot.game.api.methods.Game;
 import org.powerbot.game.api.methods.Settings;
 import org.powerbot.game.api.methods.Widgets;
 import org.powerbot.game.api.methods.interactive.NPCs;
@@ -107,10 +108,15 @@ public class Combat extends Node {
 		
 		int currentHp = Integer.parseInt(Widgets.get(748, 8).getText());		
 		if (currentHp < Data.totalHp*(10*0.01) && Data.useTeletab) {  
-			Item teleTab = Inventory.getItem(Data.vTeleTab);
-            if (teleTab != null && Data.useTeletab) {
-            teleTab.getWidgetChild().click(true);
+            int tabID = Methods.getTeletabId();
+            Item teleTab = Inventory.getItem(tabID);
+            if (teleTab != null && Data.useTeletab && !Data.usedTeletab) {
+	            teleTab.getWidgetChild().click(true);	            
+	        	Data.usedTeletab = true;
+	        	Data.status = "Teleporting...";
             }
+            Task.sleep(Random.nextInt(1000, 2000));
+            Game.logout(false);
 		} else if (currentHp < Data.totalHp*(Data.eatAt*0.01) && Data.useFood) {
 			Item food = Inventory.getItem(Data.foodId);			
 			if (food != null) {				

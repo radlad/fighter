@@ -29,7 +29,7 @@ public class Data {
 		270,6686,5315,5316,5289,5300,5304,1516,1392,574,570,20667,7937,561,560,565,1441,1443,372,533,446,454,450};
 	public static int Bones[] = { 526, 532, 534, 536 };
 	public static int BtpTab = 8015;
-	public static int vTeleTab = 8007;
+	public static int[] TeleTab = { 8007, 8008, 8009, 8010, 8011, 8013 };
 	public static int arrowsToPickup;
 	
 	public static boolean paused;
@@ -76,6 +76,7 @@ public class Data {
 	public static boolean bonesToPeaches;
 	public static boolean useMomentum;
 	public static boolean useTeletab;
+	public static boolean usedTeletab = false;
 	public static boolean useAlchemy;
 	public static boolean useFood;
 	public static boolean usePotions;

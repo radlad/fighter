@@ -103,6 +103,7 @@ public class MondoFighter extends ActiveScript implements PaintListener, MouseLi
             Data.oldKills = Data.killCounter;
             System.out.println("Starting MondoFighter.");            
             Data.totalHp = Integer.parseInt(Widgets.get(748, 8).getText());
+            System.out.println("Teletab ID: " + Methods.getTeletabId());
             
     }
     

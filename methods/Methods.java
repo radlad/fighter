@@ -149,6 +149,15 @@ public class Methods {
 		return false;		
 	}
 	
+	public static int getTeletabId() {
+        for(int id : Data.TeleTab) {
+            if(Inventory.getCount(id) > 0) {
+                return id;      
+            }
+        }
+		return 0;				
+	}
+	
 	public static boolean hasAlchemyItem() {
         for(Item i : Inventory.getItems()) {
             if(Data.alchemy_selected_item.contains(i.getName())) {
