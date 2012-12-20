@@ -102,9 +102,7 @@ public class MondoFighter extends ActiveScript implements PaintListener, MouseLi
             Data.START_NEG_Y = new Tile (Players.getLocal().getLocation().getX(), Players.getLocal().getLocation().getY()-Data.fighterRadius, 0);
             Data.oldKills = Data.killCounter;
             System.out.println("Starting MondoFighter.");            
-            Data.totalHp = Integer.parseInt(Widgets.get(748, 8).getText());
-            System.out.println("Teletab ID: " + Methods.getTeletabId());
-            
+            Data.totalHp = Integer.parseInt(Widgets.get(748, 8).getText());            
     }
     
     @Override
