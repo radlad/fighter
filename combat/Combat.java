@@ -26,7 +26,7 @@ public class Combat extends Node {
 			for(int i : Data.selectedMonstersInt) {
 				return n != null && Data.selectedMonstersInt.contains(n.getId()) && n.getLocation().canReach() 
 						&& Calculations.distanceTo(Data.START_LOCATION.getLocation()) <= Data.fighterRadius 
-						&& n.getHpPercent() > 0 && (n.getLocation() != Players.getLocal().getLocation()) &&
+						&& n.getHpPercent() > 0 && !n.getLocation().equals(Players.getLocal().getLocation()) &&
 						!n.isInCombat();
 			}
 			return false;
@@ -75,7 +75,7 @@ public class Combat extends Node {
 					}
 				} else if (!npc.isOnScreen()){
 					Camera.setPitch(Random.nextInt(1, 25));
-					Camera.turnTo(npc);				
+					Camera.turnTo(npc, Random.nextInt(-50, 50));				
 					Data.status = "Finding NPC.";
 					System.out.println("Finding monster.");
 				} else if (npc.getLocation() == p.getLocation()) {
@@ -105,8 +105,13 @@ public class Combat extends Node {
 			Data.runButton.click(true);
 		}
 		
-		int currentHp = Integer.parseInt(Widgets.get(748, 8).getText());
-		if (currentHp < Data.totalHp*(Data.eatAt*0.01) && Data.useFood) {
+		int currentHp = Integer.parseInt(Widgets.get(748, 8).getText());		
+		if (currentHp < Data.totalHp*(10*0.01) && Data.useTeletab) {  
+			Item teleTab = Inventory.getItem(Data.vTeleTab);
+            if (teleTab != null && Data.useTeletab) {
+            teleTab.getWidgetChild().click(true);
+            }
+		} else if (currentHp < Data.totalHp*(Data.eatAt*0.01) && Data.useFood) {
 			Item food = Inventory.getItem(Data.foodId);			
 			if (food != null) {				
 				System.out.println("Eating food.");

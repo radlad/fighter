@@ -149,12 +149,17 @@ public class Paint {
           g.setFont(font4);
           g.setColor(color6);
           if (!showDef && Data.chosenSkill != 1) {
-              g.drawString("[ " + Data.skillString + ": " + Skills.getRealLevel(Data.chosenSkill) + " (+" + (Skills.getRealLevel(Data.chosenSkill) - Data.startLevel) + ") | " + Methods.kFormat(Methods.getXpHr(Data.chosenSkill)) + " xp/h | TTL: " + Methods.getTTNL(Data.chosenSkill) + " ]", 260, 362);
-  
+              g.drawString("[ " + Data.skillString + ": " + Skills.getRealLevel(Data.chosenSkill) + " (+" + (Skills.getRealLevel(Data.chosenSkill) - Data.startLevel) +
+            		  ") | " + Methods.t.format(Methods.getExpPercent(Data.chosenSkill)) + "% | " + Methods.kFormat(Methods.getXpHr(Data.chosenSkill))
+            		  + " xp/h | TTL: " + Methods.getTTNL(Data.chosenSkill) + " ]", 260, 362);  
           } else {
-              g.drawString("[ Defence: " + Skills.getRealLevel(1) + " (+" + (Skills.getRealLevel(1) - Data.startDefLevel) + ") | " + Methods.kFormat(Methods.getXpHr(1)) + " xp/h | TTL: " + Methods.getTTNL(1) + " ]", 260, 362);
+              g.drawString("[ Defence: " + Skills.getRealLevel(1) + " (+" + (Skills.getRealLevel(1) - Data.startDefLevel) + ") | " 
+            		  + Methods.t.format(Methods.getExpPercent(Data.chosenSkill)) + "% | " + Methods.kFormat(Methods.getXpHr(1)) + " xp/h | TTL: "
+            		  + Methods.getTTNL(1) + " ]", 260, 362);
           }
-          g.drawString("[ Constitution: " + Skills.getRealLevel(Skills.CONSTITUTION) + " (+" + (Skills.getRealLevel(Skills.CONSTITUTION) - Data.startConstLevel) + ") | " + Methods.kFormat(Methods.getXpHr(3)) + " xp/h | TTL: " + Methods.getTTNL(3) + " ]", 260, 382);
+          g.drawString("[ Constitution: " + Skills.getRealLevel(Skills.CONSTITUTION) + " (+" + (Skills.getRealLevel(Skills.CONSTITUTION) - Data.startConstLevel) + ") | " 
+        		  	+ Methods.t.format(Methods.getExpPercent(Data.chosenSkill)) + "% | " + Methods.kFormat(Methods.getXpHr(3))
+        		  	+ " xp/h | TTL: " + Methods.getTTNL(3) + " ]", 260, 382);
           g.setColor(color1);
           g.fillRect(8, 334, 69, 14);
           g.fillRect(82, 334, 69, 14);

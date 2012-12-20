@@ -108,6 +108,7 @@ public class GUI extends JFrame {
 			Data.useAlchemy = alchemy_enable.isSelected() ? true : false;
 			Data.useFood = food_use_chkbox.isSelected() ? true : false;
 			Data.usePotions = use_potions_chkbox.isSelected() ? true : false;
+			Data.useTeletab = misc_teletab_chkbox.isSelected() ? true : false;
 			
 			if (potions_actionbar_combo_slot23.getSelectedItem().toString() != "None") {
 				Data.useActionSlot23 = true;
@@ -324,6 +325,7 @@ public class GUI extends JFrame {
 		misc_arrow_box = new JComboBox<>();
 		MISC_momentum_chkbox = new JCheckBox();
 		misc_help_label1 = new JLabel();
+		misc_teletab_chkbox = new JCheckBox();
 		panel18 = new JPanel();
 		startButton = new JButton();
 		exitButton = new JButton();
@@ -1291,6 +1293,11 @@ public class GUI extends JFrame {
 					misc_help_label1.setFont(misc_help_label1.getFont().deriveFont(misc_help_label1.getFont().getSize() - 1f));
 					panel17.add(misc_help_label1);
 					misc_help_label1.setBounds(10, 75, 205, misc_help_label1.getPreferredSize().height);
+					
+					//---- misc_teletab_chkbox ----
+					misc_teletab_chkbox.setText("Use Teletab on low health or logout");
+					panel17.add(misc_teletab_chkbox);
+					misc_teletab_chkbox.setBounds(new Rectangle(new Point(10, 95), misc_teletab_chkbox.getPreferredSize()));
 
 					{ // compute preferred size
 						Dimension preferredSize = new Dimension();
@@ -1499,6 +1506,7 @@ public class GUI extends JFrame {
 	private JComboBox<String> misc_arrow_box;
 	private JCheckBox MISC_momentum_chkbox;
 	private JLabel misc_help_label1;
+	private JCheckBox misc_teletab_chkbox;
 	private JPanel panel18;
 	private JButton startButton;
 	private JButton exitButton;

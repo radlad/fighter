@@ -9,7 +9,7 @@ MondoFighter
          (folder) bin
          (folder) src
 
-2) Extract MondoFighter to the "src" folder
+2) Extract MondoFighter.java and folders to the "src" folder
 3) Compile the src folder (instructions can be found on forums)
 4) Create shortcut to "RSBot.jar" and add "-dev" to the shortcut parameters
 5) Run!

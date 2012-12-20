@@ -21,6 +21,7 @@ public class Methods {
 	
 	public static NumberFormat k = new DecimalFormat("###,###,###");
 	public static NumberFormat z = new DecimalFormat("#");
+	public static NumberFormat t = new DecimalFormat("###.##");
 	
 	public static String kFormat(final int num) {
 		return num / 1000 + "." + (num % 1000) / 100 + "K";
@@ -45,6 +46,13 @@ public class Methods {
         int xpNext = Skills.getExperienceRequired(Skills.getRealLevel(skill) + 1);        
         double xpBarLength = (xpCurrent / xpNext)*maxlength;
 		return xpBarLength;   
+	}
+	
+	public static double getExpPercent(int skill) {
+        int xpCurrent = Skills.getExperienceRequired(Skills.getRealLevel(skill));
+        int xpNext = Skills.getExperienceRequired(Skills.getRealLevel(skill) + 1);        
+        int xpPercent = (xpCurrent / xpNext);
+		return xpPercent;   
 	}
 	
 	public static int getPerHour(int integer) {
