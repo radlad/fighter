@@ -109,6 +109,7 @@ public class GUI extends JFrame {
 			Data.useFood = food_use_chkbox.isSelected() ? true : false;
 			Data.usePotions = use_potions_chkbox.isSelected() ? true : false;
 			Data.useTeletab = misc_teletab_chkbox.isSelected() ? true : false;
+			Data.useChatWarning = misc_usewarning_chkbox.isSelected() ? true : false;
 			
 			if (potions_actionbar_combo_slot23.getSelectedItem().toString() != "None") {
 				Data.useActionSlot23 = true;
@@ -326,6 +327,8 @@ public class GUI extends JFrame {
 		MISC_momentum_chkbox = new JCheckBox();
 		misc_help_label1 = new JLabel();
 		misc_teletab_chkbox = new JCheckBox();
+		misc_usewarning_chkbox = new JCheckBox();
+		misc_chatwarnhelp_label = new JLabel();
 		panel18 = new JPanel();
 		startButton = new JButton();
 		exitButton = new JButton();
@@ -1298,6 +1301,17 @@ public class GUI extends JFrame {
 					misc_teletab_chkbox.setText("Use Teletab on low health or logout");
 					panel17.add(misc_teletab_chkbox);
 					misc_teletab_chkbox.setBounds(new Rectangle(new Point(10, 95), misc_teletab_chkbox.getPreferredSize()));
+					
+					//---- misc_usewarning_chkbox ----
+					misc_usewarning_chkbox.setText("Show Chat Warning when someone talks");
+					panel17.add(misc_usewarning_chkbox);
+					misc_usewarning_chkbox.setBounds(new Rectangle(new Point(10, 165), misc_usewarning_chkbox.getPreferredSize()));
+
+					//---- misc_chatwarnhelp_label ----
+					misc_chatwarnhelp_label.setText("Will show time since last message was received");
+					misc_chatwarnhelp_label.setFont(misc_chatwarnhelp_label.getFont().deriveFont(misc_chatwarnhelp_label.getFont().getSize() - 1f));
+					panel17.add(misc_chatwarnhelp_label);
+					misc_chatwarnhelp_label.setBounds(new Rectangle(new Point(15, 190), misc_chatwarnhelp_label.getPreferredSize()));
 
 					{ // compute preferred size
 						Dimension preferredSize = new Dimension();
@@ -1507,6 +1521,8 @@ public class GUI extends JFrame {
 	private JCheckBox MISC_momentum_chkbox;
 	private JLabel misc_help_label1;
 	private JCheckBox misc_teletab_chkbox;
+	private JCheckBox misc_usewarning_chkbox;
+	private JLabel misc_chatwarnhelp_label;
 	private JPanel panel18;
 	private JButton startButton;
 	private JButton exitButton;

@@ -84,6 +84,9 @@ public class Data {
 	public static boolean useActionSlot3;
 	public static boolean useActionSlot4;
 	public static boolean useActionSlot5;
+	public static boolean chatWarning = false;
+	public static boolean useChatWarning;
+	public static Timer chatTimer = new Timer(0);
 	public static int potionSkill2;
 	public static int[] strPotion = {161, 159, 157, 2440, 119, 117, 115, 113};
 	public static int[] atkPotion = {149, 147, 145, 2436, 125, 123, 121, 2428};

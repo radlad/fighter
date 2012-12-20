@@ -38,6 +38,8 @@ public class Paint {
     public final static Color color4 = new Color(0, 0, 0, 75);
     public final static Color color5 = new Color(255, 0, 0);
     public final static Color color6 = new Color(255, 255, 255);
+    public final static Color color7 = new Color(255, 0, 0, 200);
+    public final static Color color8 = new Color(0, 0, 0, 160);
     public final static Color color_grey = new Color(73, 73, 73);
     public static Color color_skill = new Color(0, 0, 0, 170);
     public final static Color color_const = new Color(255, 43, 43, 170);
@@ -47,11 +49,14 @@ public class Paint {
 
     public final static BasicStroke stroke1 = new BasicStroke(1);
     public final static BasicStroke stroke4 = new BasicStroke(4, BasicStroke.CAP_ROUND, BasicStroke.JOIN_MITER);
+    public final static BasicStroke stroke3 = new BasicStroke(3, BasicStroke.CAP_ROUND, BasicStroke.JOIN_MITER);
 
     public final static Font font1 = new Font("Myriad Pro", 1, 16);
     public final static Font font2 = new Font("Myriad Pro", 0, 12);
     public final static Font font3 = new Font("Myriad Pro", 1, 10);
     public final static Font font4 = new Font("Myriad Pro", 0, 10); 
+    public final static Font font5 = new Font("Myriad Pro", 1, 32);
+    public final static Font font6 = new Font("Myriad Pro", 0, 16);
 
 	public static void doPaint(Graphics g1) {		
 		Graphics2D g = (Graphics2D)g1;
@@ -169,7 +174,21 @@ public class Paint {
           g.drawString("Toggle Paint", 15, 345);
           g.drawString("Toggle Draw", 91, 345);
           g.drawString("Show GUI", 168, 345);
-          g.drawString("Pause Bot", 244, 345);       	
+          g.drawString("Pause Bot", 244, 345); 
+          
+	        if (Data.chatWarning && Data.chatTimer.isRunning()) {
+		        g.setColor(color8);
+		        g.fillRect(236, 414, 255, 67);
+		        g.setColor(color7);
+		        g.setStroke(stroke3);
+		        g.drawRect(236, 414, 255, 67);
+		        g.setFont(font5);
+		        g.drawString("WARNING", 299, 449);
+		        g.setFont(font6);
+		        g.drawString("Last Message: " + Data.chatTimer.toElapsedString() + " ago", 278, 467);
+		        g.drawLine(474, 420, 484, 430);
+		        g.drawLine(474, 430, 484, 420);
+	        }
         }
 	}	
 }

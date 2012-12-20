@@ -27,6 +27,7 @@ import org.powerbot.game.api.methods.tab.Skills;
 import org.powerbot.game.api.methods.widget.Lobby;
 import org.powerbot.game.api.methods.widget.WidgetCache;
 import org.powerbot.game.api.util.Random;
+import org.powerbot.game.api.util.Timer;
 import org.powerbot.game.api.wrappers.Tile;
 import org.powerbot.game.bot.Context;
 import org.powerbot.game.client.Client;
@@ -168,6 +169,7 @@ public class MondoFighter extends ActiveScript implements PaintListener, MouseLi
 		final Rectangle toggleGUI = new Rectangle(156, 334, 69, 14);
 		final Rectangle pauseBot = new Rectangle(230, 334, 69, 14);
 		final Rectangle toggleDef = new Rectangle(255, 348, 263, 20);
+		final Rectangle closeWarning = new Rectangle(474, 420, 484, 430);
 		if(togglePaint.contains(p.getPoint())) {
 			Paint.showPaint = !Paint.showPaint;
         }		
@@ -184,7 +186,10 @@ public class MondoFighter extends ActiveScript implements PaintListener, MouseLi
 			Data.status = Data.paused ? "Paused." : "Waiting...";
 		}
 		if (toggleDef.contains(p.getPoint())) {
-			Paint.showDef = !Paint.showDef;
+			Paint.showDef = !Paint.showDef;			
+		}
+		if (closeWarning.contains(p.getPoint()) && Data.chatWarning) {
+			Data.chatWarning = !Data.chatWarning;
 		}
 	}
 
@@ -210,6 +215,12 @@ public class MondoFighter extends ActiveScript implements PaintListener, MouseLi
 
 	@Override
 	public void messageReceived(MessageEvent e) {
+		
+		if (((e.getSender() != "") || (e.getSender() != "News")) && Data.useChatWarning) {
+			Data.chatWarning = true;
+			Data.chatTimer = new Timer(20000);	
+		}
+		
 		String ammomsg = e.getMessage();
 		if (ammomsg.contains("You have no ammo equipped.") && e.getSender() == "") {
 			System.out.println("No ammo equipped, logging out.");
