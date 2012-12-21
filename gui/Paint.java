@@ -73,10 +73,12 @@ public class Paint {
         
         if (showNPC) {  
         	
-        	g1.setColor(color_npc2);
-        	g1.fillOval(startLocMap.x-(Data.fighterRadius*4), startLocMap.y-(Data.fighterRadius*4), Data.fighterRadius*8, Data.fighterRadius*8);
-        	g1.setColor(color_npc);
-        	g1.drawOval(startLocMap.x-(Data.fighterRadius*4), startLocMap.y-(Data.fighterRadius*4), Data.fighterRadius*8, Data.fighterRadius*8);        	
+        	if (startLocMap != null) {
+	        	g1.setColor(color_npc2);
+	        	g1.fillOval(startLocMap.x-(Data.fighterRadius*4), startLocMap.y-(Data.fighterRadius*4), Data.fighterRadius*8, Data.fighterRadius*8);
+	        	g1.setColor(color_npc);
+	        	g1.drawOval(startLocMap.x-(Data.fighterRadius*4), startLocMap.y-(Data.fighterRadius*4), Data.fighterRadius*8, Data.fighterRadius*8);  
+        	}
         	
         	if (nearestMob != null && nearestMob.isOnScreen()) {
         		g1.setFont(font3); 
