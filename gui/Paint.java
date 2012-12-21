@@ -9,6 +9,7 @@ import java.awt.Point;
 import java.awt.RenderingHints;
 import methods.Methods;
 
+import org.powerbot.game.api.methods.Calculations;
 import org.powerbot.game.api.methods.Game;
 import org.powerbot.game.api.methods.input.Mouse;
 import org.powerbot.game.api.methods.interactive.NPCs;
@@ -67,22 +68,28 @@ public class Paint {
         
         final NPC nearestMob = NPCs.getNearest(Combat.MobFilter);
         final GroundItem item = GroundItems.getNearest(LootItems.ItemFilter);
+        Point startLocMap = Calculations.worldToMap(Data.START_LOCATION.getX(), Data.START_LOCATION.getY());
 
         
-        if (showNPC) {     
+        if (showNPC) {  
+        	
+        	g1.setColor(color_npc2);
+        	g1.fillOval(startLocMap.x-(Data.fighterRadius*4), startLocMap.y-(Data.fighterRadius*4), Data.fighterRadius*8, Data.fighterRadius*8);
+        	g1.setColor(color_npc);
+        	g1.drawOval(startLocMap.x-(Data.fighterRadius*4), startLocMap.y-(Data.fighterRadius*4), Data.fighterRadius*8, Data.fighterRadius*8);        	
         	
         	if (nearestMob != null && nearestMob.isOnScreen()) {
         		g1.setFont(font3); 
         		g1.setColor(color_npc);
 	        	Methods.drawNPC(g1, nearestMob, color_npc, 75);
 	        	g1.setColor(Color.BLACK);
-	        	g1.drawString(nearestMob.getName(), (int) nearestMob.getCentralPoint().getX()+26, (int) (nearestMob.getCentralPoint().getY()-6));
+	        	g1.drawString(nearestMob.getName(), (int) nearestMob.getCentralPoint().getX()+26, (int) (nearestMob.getCentralPoint().getY()-5));
 	        	g1.setColor(color_npc);
-	        	g1.drawString(nearestMob.getName(), (int) nearestMob.getCentralPoint().getX()+25, (int) (nearestMob.getCentralPoint().getY()-5));
+	        	g1.drawString(nearestMob.getName(), (int) nearestMob.getCentralPoint().getX()+25, (int) (nearestMob.getCentralPoint().getY()-6));
 	        	g1.setColor(Color.BLACK);
-	        	g1.drawString("Level: " + nearestMob.getLevel(), (int) nearestMob.getCentralPoint().getX()+26, (int) (nearestMob.getCentralPoint().getY()+5));
+	        	g1.drawString("Level: " + nearestMob.getLevel(), (int) nearestMob.getCentralPoint().getX()+26, (int) (nearestMob.getCentralPoint().getY()+6));
 	        	g1.setColor(color_npc);
-	        	g1.drawString("Level: " + nearestMob.getLevel(), (int) nearestMob.getCentralPoint().getX()+25, (int) (nearestMob.getCentralPoint().getY()+4));
+	        	g1.drawString("Level: " + nearestMob.getLevel(), (int) nearestMob.getCentralPoint().getX()+25, (int) (nearestMob.getCentralPoint().getY()+5));
 
 	        }
 	        if (item != null) {

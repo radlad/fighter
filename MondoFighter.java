@@ -216,7 +216,7 @@ public class MondoFighter extends ActiveScript implements PaintListener, MouseLi
 	@Override
 	public void messageReceived(MessageEvent e) {
 		
-		if (((!e.getSender().equals("")) || (!e.getSender().equals("News"))) && Data.useChatWarning) {
+		if (e.getId() == 2 && Data.useChatWarning) {
 			Data.chatWarning = true;
 			Data.chatTimer = new Timer(20000);	
 		}
